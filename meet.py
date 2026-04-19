@@ -1,6 +1,7 @@
 from event import Event
 from lineupbuilder import assign_all_teams
 from simulator import simulate_event
+from configuration import SCORING, MAX_EVENTS_PER_SWIMMER
 
 
 class Meet:
@@ -20,6 +21,21 @@ class Meet:
 
     def assign_events(self):
         assign_all_teams(self.teams, self.event_names)
+        self.check_assignments()
+
+    def check_assignments(self):
+        print("\n===== EVENT ASSIGNMENTS =====")
+        for team in self.teams.values():
+            print(f"\n{team.name}")
+            for swimmer in team.swimmers:
+                print(f"{swimmer.name}: {swimmer.assigned_events}")
+
+                if len(swimmer.best_times) >= MAX_EVENTS_PER_SWIMMER:
+                    if len(swimmer.assigned_events) != MAX_EVENTS_PER_SWIMMER:
+                        print(
+                            f"WARNING: {swimmer.name} should have {MAX_EVENTS_PER_SWIMMER} events "
+                            f"but has {len(swimmer.assigned_events)}"
+                        )
 
     def build_event_entries(self):
         for event in self.events:
@@ -45,9 +61,9 @@ class Meet:
             return
 
         for place, (swimmer, time) in enumerate(event.results, start=1):
-            # Mark scoring swimmers
-            if place <= 5:
-                print(f"{place}. {swimmer.name} ({swimmer.team}) - {time:.2f}  [+{[9,4,3,2,1][place-1]} pts]")
+            if place <= len(SCORING):
+                points = SCORING[place - 1]
+                print(f"{place}. {swimmer.name} ({swimmer.team}) - {time:.2f} [+{points} pts]")
             else:
                 print(f"{place}. {swimmer.name} ({swimmer.team}) - {time:.2f}")
 
