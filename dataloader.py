@@ -6,15 +6,6 @@ from configuration import EVENTS
 
 
 def load_teams_from_csv(filename):
-    """
-    Loads swimmers from one CSV file.
-
-    Expected format:
-    name,team,50 Free,100 Free,...,400 IM
-
-    Missing times should be written as NA.
-    """
-
     teams = {}
 
     with open(filename, newline="", encoding="utf-8") as file:
@@ -25,10 +16,8 @@ def load_teams_from_csv(filename):
             team_name = row["team"].strip()
 
             best_times = {}
-
             for event in EVENTS:
                 value = row[event].strip()
-
                 if value != "NA":
                     best_times[event] = float(value)
 

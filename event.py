@@ -1,12 +1,4 @@
 class Event:
-    """
-    Represents one event in the meet.
-    Stores:
-    - name
-    - entries: swimmers assigned to swim it
-    - results: list of tuples (swimmer, simulated_time)
-    """
-
     def __init__(self, name):
         self.name = name
         self.entries = []
@@ -22,4 +14,4 @@ class Event:
         self.results = results
 
     def __repr__(self):
-        return f"Event(name={self.name}, entries={len(self.entries)})"
+        return f"Event({self.name}, entries={len(self.entries)})"

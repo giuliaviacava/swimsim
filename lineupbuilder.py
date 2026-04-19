@@ -3,53 +3,49 @@ from configuration import MAX_EVENTS_PER_SWIMMER, ENTRIES_PER_TEAM_PER_EVENT
 
 def assign_events_for_team(team, event_names):
     """
-    Assign exactly 3 events per swimmer if possible.
+    Each team builds its own strongest lineup without looking at the opponent.
 
     Strategy:
-    1. Clear previous assignments
-    2. First pass: fill each event with the team's fastest swimmers
-    3. Second pass: make sure every swimmer gets up to 3 events
-       by adding their best remaining events
+    - clear old assignments
+    - repeatedly choose the fastest remaining legal swim
+    - respect:
+        * max 3 events per swimmer
+        * max 3 entries per team per event
     """
 
     for swimmer in team.swimmers:
         swimmer.clear_assignments()
 
-    # First pass: strongest lineup per event
-    event_counts = {event_name: 0 for event_name in event_names}
+    event_entry_counts = {event_name: 0 for event_name in event_names}
 
-    for event_name in event_names:
-        eligible = [
-            swimmer for swimmer in team.swimmers
-            if swimmer.can_swim(event_name) and swimmer.has_room(MAX_EVENTS_PER_SWIMMER)
-        ]
+    while True:
+        best_choice = None
+        best_time = None
 
-        eligible.sort(key=lambda swimmer: swimmer.best_time_for(event_name))
+        for swimmer in team.swimmers:
+            if not swimmer.has_room(MAX_EVENTS_PER_SWIMMER):
+                continue
 
-        selected = eligible[:ENTRIES_PER_TEAM_PER_EVENT]
+            for event_name in event_names:
+                if not swimmer.can_swim(event_name):
+                    continue
+                if swimmer.is_assigned(event_name):
+                    continue
+                if event_entry_counts[event_name] >= ENTRIES_PER_TEAM_PER_EVENT:
+                    continue
 
-        for swimmer in selected:
-            if swimmer.assign_event(event_name, MAX_EVENTS_PER_SWIMMER):
-                event_counts[event_name] += 1
+                time = swimmer.best_time_for(event_name)
 
-    # Second pass: ensure each swimmer gets exactly 3 events if possible
-    for swimmer in team.swimmers:
-        while len(swimmer.assigned_events) < MAX_EVENTS_PER_SWIMMER:
-            possible_events = [
-                event_name for event_name in event_names
-                if swimmer.can_swim(event_name)
-                and event_name not in swimmer.assigned_events
-            ]
+                if best_time is None or time < best_time:
+                    best_time = time
+                    best_choice = (swimmer, event_name)
 
-            if not possible_events:
-                break
+        if best_choice is None:
+            break
 
-            # Choose swimmer's fastest remaining event
-            possible_events.sort(key=lambda event_name: swimmer.best_time_for(event_name))
-            best_event = possible_events[0]
-
-            swimmer.assign_event(best_event, MAX_EVENTS_PER_SWIMMER)
-            event_counts[best_event] += 1
+        swimmer, event_name = best_choice
+        swimmer.assign_event(event_name, MAX_EVENTS_PER_SWIMMER)
+        event_entry_counts[event_name] += 1
 
 
 def assign_all_teams(teams, event_names):

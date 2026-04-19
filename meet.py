@@ -14,15 +14,6 @@ def format_time(seconds):
 
 
 class Meet:
-    """
-    Represents the whole meet.
-    Handles:
-    - lineup assignment
-    - building event entries
-    - simulating each event
-    - scoring
-    """
-
     def __init__(self, teams, event_names):
         self.teams = teams
         self.event_names = event_names
