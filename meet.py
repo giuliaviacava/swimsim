@@ -45,7 +45,11 @@ class Meet:
             return
 
         for place, (swimmer, time) in enumerate(event.results, start=1):
-            print(f"{place}. {swimmer.name} ({swimmer.team}) - {time:.2f}")
+            # Mark scoring swimmers
+            if place <= 5:
+                print(f"{place}. {swimmer.name} ({swimmer.team}) - {time:.2f}  [+{[9,4,3,2,1][place-1]} pts]")
+            else:
+                print(f"{place}. {swimmer.name} ({swimmer.team}) - {time:.2f}")
 
     def print_final_results(self):
         print("\n===== FINAL TEAM SCORES =====")
