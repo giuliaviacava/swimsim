@@ -1,13 +1,4 @@
 class Swimmer:
-    """
-    Represents one swimmer.
-    Stores:
-    - name
-    - team
-    - best_times: dict[event_name] = float time in seconds
-    - assigned_events: list of events this swimmer is entered in
-    """
-
     def __init__(self, name, team, best_times):
         self.name = name
         self.team = team
@@ -41,4 +32,4 @@ class Swimmer:
         self.assigned_events = []
 
     def __repr__(self):
-        return f"Swimmer(name={self.name}, team={self.team})"
+        return f"Swimmer({self.name}, {self.team})"

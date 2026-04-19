@@ -1,12 +1,4 @@
 class Team:
-    """
-    Represents one team.
-    Stores:
-    - name
-    - swimmers
-    - score
-    """
-
     def __init__(self, name):
         self.name = name
         self.swimmers = []
@@ -26,4 +18,4 @@ class Team:
             swimmer.clear_assignments()
 
     def __repr__(self):
-        return f"Team(name={self.name}, score={self.score})"
+        return f"Team({self.name}, score={self.score})"
