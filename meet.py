@@ -52,6 +52,10 @@ class Meet:
         for event in self.events:
             simulate_event(event, self.teams)
             self.print_event_results(event)
+    def format_time(seconds):
+        minutes = int(seconds // 60)
+        remaining = seconds % 60
+        return f"{minutes}:{remaining:05.2f}"
 
     def print_event_results(self, event):
         print(f"\n===== {event.name} =====")
