@@ -5,6 +5,9 @@ from configuration import SCORING, MAX_EVENTS_PER_SWIMMER
 
 
 def format_time(seconds):
+    if seconds < 60:
+        return f"{seconds:.2f}"
+
     minutes = int(seconds // 60)
     remaining = seconds % 60
     return f"{minutes}:{remaining:05.2f}"
