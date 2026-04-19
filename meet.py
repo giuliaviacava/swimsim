@@ -4,6 +4,12 @@ from simulator import simulate_event
 from configuration import SCORING, MAX_EVENTS_PER_SWIMMER
 
 
+def format_time(seconds):
+    minutes = int(seconds // 60)
+    remaining = seconds % 60
+    return f"{minutes}:{remaining:05.2f}"
+
+
 class Meet:
     """
     Represents the whole meet.
@@ -52,10 +58,6 @@ class Meet:
         for event in self.events:
             simulate_event(event, self.teams)
             self.print_event_results(event)
-    def format_time(seconds):
-        minutes = int(seconds // 60)
-        remaining = seconds % 60
-        return f"{minutes}:{remaining:05.2f}"
 
     def print_event_results(self, event):
         print(f"\n===== {event.name} =====")
@@ -65,11 +67,13 @@ class Meet:
             return
 
         for place, (swimmer, time) in enumerate(event.results, start=1):
+            formatted_time = format_time(time)
+
             if place <= len(SCORING):
                 points = SCORING[place - 1]
-                print(f"{place}. {swimmer.name} ({swimmer.team}) - {time:.2f} [+{points} pts]")
+                print(f"{place}. {swimmer.name} ({swimmer.team}) - {formatted_time} [+{points} pts]")
             else:
-                print(f"{place}. {swimmer.name} ({swimmer.team}) - {time:.2f}")
+                print(f"{place}. {swimmer.name} ({swimmer.team}) - {formatted_time}")
 
     def print_final_results(self):
         print("\n===== FINAL TEAM SCORES =====")
