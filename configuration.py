@@ -1,3 +1,8 @@
+### swimsim/configuration.py
+'''
+Defines what events exist, how scoring works, participation limits, random add/drop time variations
+'''
+
 EVENTS = [
     "50 Free",
     "100 Free",
