@@ -1,18 +1,30 @@
-import csv
-
 from swim import Swimmer
 from team import Team
 from meet import Meet
 from configuration import EVENTS
 
-
-def load_teams_from_txt(filename):
+def get_teams(filename):
     teams = {}
 
-    with open(filename, newline="", encoding="utf-8") as file:
-        reader = csv.DictReader(file)
+    with open(filename, "r", encoding="utf-8") as file:
+        # Read header line
+        header = file.readline().strip().split(",")
 
-        for row in reader:
+        while True:
+            line = file.readline()
+
+            # EOF check
+            if line == "":
+                break
+
+            parts = line.strip().split(",")
+
+            # Skip bad lines
+            if len(parts) != len(header):
+                continue
+
+            row = dict(zip(header, parts))
+
             name = row["name"].strip()
             team_name = row["team"].strip()
 
@@ -35,7 +47,7 @@ def load_teams_from_txt(filename):
 def main():
     filename = "rosters.txt"
 
-    all_teams = load_teams_from_txt(filename)
+    all_teams = get_teams(filename)
 
     selected_team_names = ["Harvard", "Princeton"]
     teams = {}
