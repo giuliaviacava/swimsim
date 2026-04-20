@@ -10,9 +10,5 @@ class Team:
     def add_points(self, points):
         self.score += points
 
-    def clear_all_assignments(self):
-        for swimmer in self.swimmers:
-            swimmer.clear_assignments()
-
     def __str__(self):
         return f"Team({self.name}, score={self.score})"
