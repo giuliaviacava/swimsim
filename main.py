@@ -12,8 +12,7 @@ def get_teams(filename):
             if line == "":
                 break
             parts = line.strip().split(",")
-            if len(parts) != len(header):
-                continue
+
             row = dict(zip(header, parts))
             name = row["name"].strip()
             team_name = row["team"].strip()
