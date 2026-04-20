@@ -11,11 +11,11 @@ def get_teams(filename):
             line = file.readline()
             if line == "":
                 break
-            parts = line.strip().split(",")
+            parts = line.split(",")
 
             row = dict(zip(header, parts))
-            name = row["name"].strip()
-            team_name = row["team"].strip()
+            name = row["name"]
+            team_name = row["team"]
 
             best_times = {}
             for event in EVENTS:
