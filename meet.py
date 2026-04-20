@@ -1,5 +1,5 @@
 '''
 assign teams
-simulate events
+simulate all events
 print all results
 '''

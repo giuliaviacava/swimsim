@@ -5,6 +5,7 @@ from configuration import EVENTS
 
 def get_teams(filename):
     teams = {}
+    # 
     with open(filename, "r", encoding="utf-8") as file:
         header = file.readline().strip().split(",")
         while True:
