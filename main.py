@@ -3,23 +3,21 @@ from team import Team
 from meet import Meet
 from configuration import EVENTS
 
+
 def get_teams(filename):
     teams = {}
 
-    with open(filename, "r", encoding="utf-8") as file:
-        # Read header line
+    with open(f"txts/{filename}", "r", encoding="utf-8") as file:
         header = file.readline().strip().split(",")
 
         while True:
             line = file.readline()
 
-            # EOF check
             if line == "":
                 break
 
             parts = line.strip().split(",")
 
-            # Skip bad lines
             if len(parts) != len(header):
                 continue
 
@@ -46,17 +44,25 @@ def get_teams(filename):
 
 def main():
     filename = "rosters.txt"
-
     all_teams = get_teams(filename)
-
-    selected_team_names = ["Harvard", "Princeton"]
-    teams = {}
-
-    for team_name in selected_team_names:
-        if team_name not in all_teams:
-            print(f"Error: team '{team_name}' not found in {filename}")
-            return
-        teams[team_name] = all_teams[team_name]
+    ivy_schools = ["Harvard", "Princeton", "Yale", "Brown", "UPenn", "Columbia", "Cornell", "Dartmouth"]
+    print("WELCOME TO THE IVY LEAGUE DUAL MEET SIMULATOR! \nYour options are: Harvard, Princeton, Yale, Brown, UPenn, Columbia, Cornell, Dartmouth\n")
+    while True:
+        school1 = input("Choose School #1: ").strip()
+        if school1 not in ivy_schools:
+            print("Sorry, but this is an Ivy League dual meet simulator. Please choose an Ivy League school.\n")
+            continue
+        break
+    while True:
+        school2 = input("Choose School #2: ").strip()
+        if school2 == school1:
+            print("You already chose this school for School #1, please choose a different school for School #2.\n")
+            continue
+        if school2 not in ivy_schools:
+            print("Sorry, but this is an Ivy League dual meet simulator. Please choose an Ivy League school.\n")
+            continue
+        break
+    teams = {school1: all_teams[school1], school2: all_teams[school2],}
 
     meet = Meet(teams, EVENTS)
     meet.assign_events()
