@@ -3,44 +3,30 @@ from team import Team
 from meet import Meet
 from configuration import EVENTS
 
-
 def get_teams(filename):
     teams = {}
-
     with open(filename, "r", encoding="utf-8") as file:
         header = file.readline().strip().split(",")
-
         while True:
             line = file.readline()
-
             if line == "":
                 break
-
             parts = line.strip().split(",")
-
             if len(parts) != len(header):
                 continue
-
             row = dict(zip(header, parts))
-
             name = row["name"].strip()
             team_name = row["team"].strip()
-
             best_times = {}
             for event in EVENTS:
                 value = row[event].strip()
                 if value != "NA":
                     best_times[event] = float(value)
-
             swimmer = Swimmer(name, team_name, best_times)
-
             if team_name not in teams:
                 teams[team_name] = Team(team_name)
-
             teams[team_name].add_swimmer(swimmer)
-
     return teams
-
 
 def main():
     filename = "rosters.txt"
@@ -68,7 +54,6 @@ def main():
     meet.assign_events()
     meet.simulate_meet()
     meet.print_final_results()
-
 
 if __name__ == "__main__":
     main()
