@@ -30,7 +30,6 @@ def get_teams(filename):
 
 def main():
     filename = "rosters.txt"
-    all_teams = get_teams(filename)
     ivy_schools = ["Harvard", "Princeton", "Yale", "Brown", "UPenn", "Columbia", "Cornell", "Dartmouth"]
     print("WELCOME TO THE IVY LEAGUE DUAL MEET SIMULATOR! \nYour options are: Harvard, Princeton, Yale, Brown, UPenn, Columbia, Cornell, Dartmouth\n")
     while True:
@@ -48,6 +47,7 @@ def main():
             print("Sorry, but this is an Ivy League dual meet simulator. Please choose an Ivy League school.")
             continue
         break
+    all_teams = get_teams(filename)
     teams = {school1: all_teams[school1], school2: all_teams[school2],}
 
     meet = Meet(teams, EVENTS)
