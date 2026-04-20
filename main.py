@@ -16,6 +16,7 @@ def get_teams(filename):
             row = dict(zip(header, parts))
             name = row["name"].strip()
             team_name = row["team"].strip()
+
             best_times = {}
             for event in EVENTS:
                 value = row[event].strip()
