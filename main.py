@@ -39,18 +39,18 @@ def get_teams(filename):
 
 def main():
     filename = "rosters.txt"
-    ivy_schools = ["Harvard", "Princeton", "Yale", "Brown", "UPenn", "Columbia", "Cornell", "Dartmouth"]
+    ivy_schools = ["harvard", "princeton", "yale", "brown", "upenn", "columbia", "cornell", "dartmouth"]
     print("WELCOME TO THE IVY LEAGUE DUAL MEET SIMULATOR! \nYour options are: Harvard, Princeton, Yale, Brown, UPenn, Columbia, Cornell, Dartmouth\n")
 
     # Makes user choose 2 schools, prints error message if user types something incorrect
     while True:
-        school1 = input("Choose School #1: ").strip()
+        school1 = input("Choose School #1: ").strip().lowercase()
         if school1 not in ivy_schools:
             print("Sorry, but this is an Ivy League dual meet simulator. Please choose an Ivy League school.")
             continue
         break
     while True:
-        school2 = input("Choose School #2: ").strip()
+        school2 = input("Choose School #2: ").strip().lowercase()
         if school2 == school1:
             print("You already chose this school for School #1, please choose a different school for School #2.")
             continue
