@@ -1,3 +1,5 @@
+### swimsim/event.py
+
 class Event:
     # Initializes event using name of event, creates empty list of swimmers entered into event, crates empty list for results of event
     def __init__(self, name):
