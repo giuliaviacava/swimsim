@@ -57,15 +57,10 @@ def main():
             continue
         break
 
-
+    # 
     all_teams = get_teams(filename)
     teams = {school1: all_teams[school1], school2: all_teams[school2],}
 
-    # Creates Meet object to simulate the meet
-    meet = Meet(teams, EVENTS)
-    meet.assign_events()
-    meet.simulate_meet()
-    meet.print_final_results()
 
 if __name__ == "__main__":
     main()
