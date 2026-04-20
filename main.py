@@ -23,7 +23,7 @@ def get_teams(filename):
 
             row = dict(zip(header, parts))
 
-            name = row["name"].strip()
+            name = row["Name"].strip()
             team_name = row["team"].strip()
 
             best_times = {}
