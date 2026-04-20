@@ -57,10 +57,13 @@ def main():
             continue
         break
 
-    # 
+    # Calls get_teams to read file and create all teams, then stores only the 2 selected teams
     all_teams = get_teams(filename)
     teams = {school1: all_teams[school1], school2: all_teams[school2],}
 
+    '''
+    CREATE A MEET OBJECT TO SIMULATE THE MEET
+    '''
 
 if __name__ == "__main__":
     main()
