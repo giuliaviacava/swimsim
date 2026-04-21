@@ -1,4 +1,3 @@
 '''
-generate swimmer times
-simulate single event
+Two methods, one to generate swimmer times and one to simulate single event
 '''

@@ -1,4 +1,7 @@
+### swimsim/swim.py
+
 class Swimmer:
+    # Initializes swimmer using name of swimmer, name of team, 
     def __init__(self, name, team, best_times):
         self.name = name
         self.team = team
