@@ -11,10 +11,6 @@ class Event:
     def add_entry(self, swimmer):
         self.entries.append(swimmer)
 
-    # Remove all swimmers from the event
-    def clear_entries(self):
-        self.entries = []
-
     # Store the final results for the event
     def set_results(self, results):
         self.results = results
