@@ -1,4 +1,4 @@
 '''
 Build optimal lineup
-Still need to figure out logic, assign 3 best events to each swimmer
+assign 3 best events to each swimmer, prioritize possible placing in events
 '''
