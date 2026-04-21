@@ -28,8 +28,5 @@ class Swimmer:
         self.assigned_events.append(event_name)
         return True
 
-    def clear_assignments(self):
-        self.assigned_events = []
-
     def __repr__(self):
         return f"Swimmer({self.name}, {self.team})"
