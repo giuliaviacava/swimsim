@@ -3,7 +3,7 @@
 import random
 from configuration import SCORING
 
-# Random add/drop variations, swimmers can drop up to 2% or add up to 5%
+# Random add/drop variations, range from dropping 2% to adding 5%
 MIN_VARIATION = -0.02
 MAX_VARIATION = 0.05
 
