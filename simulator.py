@@ -14,11 +14,15 @@ def generate_swimmer_time(swimmer, event_name):
 
 def simulate_event(event, teams):
     results = []
+    # Generates a simulated race time for each swimmer, stores swimmer and time together in results list
     for swimmer in event.entries:
         simulated_time = generate_swimmer_time(swimmer, event.name)
         results.append((swimmer, simulated_time))
+    # Sort results from fastest to slowest time, save sorted results in event object
     results.sort(key=lambda x: x[1])
     event.set_results(results)
+
+    # Loop through top scoring swimmers only, add those points to the swimmer's team total score
     for place, (swimmer, _) in enumerate(results[:len(SCORING)]):
         points = SCORING[place]
         teams[swimmer.team].add_points(points)
