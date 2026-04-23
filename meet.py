@@ -1,3 +1,5 @@
+### swimsim/meet.py
+
 '''
 Meet object
 assign teams
