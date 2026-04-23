@@ -12,7 +12,6 @@ def generate_swimmer_time(swimmer, event_name):
     best_time = swimmer.best_time_for(event_name)
     return best_time * (1 + random.uniform(MIN_VARIATION, MAX_VARIATION))
 
-# Generates a time for each swimmer in the event and adds that time to a list of results
 def simulate_event(event, teams):
     results = []
     for swimmer in event.entries:
