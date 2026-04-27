@@ -44,6 +44,7 @@ class Meet:
                 return
             for place, (swimmer, time) in enumerate(event.results, start=1):
                 formatted_time = self.format_time(time)
+                # Prints name, team, formatted time, and how many points they scored (if they scored)
                 if place <= len(SCORING):
                     points = SCORING[place - 1]
                     print(f"{place}. {swimmer.name} ({swimmer.team}) - {formatted_time} [+{points} pts]")
