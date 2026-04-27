@@ -13,7 +13,7 @@ class Meet:
         self.events = [Event(name) for name in event_names]
 
     # Converts from seconds into minutes, seconds, milliseconds
-    def format_time(seconds):
+    def format_time(self, seconds):
         if seconds < 60:
             return f"{seconds:.2f}"
         minutes = int(seconds // 60)
