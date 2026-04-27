@@ -15,28 +15,24 @@ def format_time(seconds):
 
 
 class Meet:
+    # Initializes meet by storing competing teams, list of events, creates Event object for each event
     def __init__(self, teams, event_names):
         self.teams = teams
         self.event_names = event_names
         self.events = [Event(name) for name in event_names]
 
+    # Assigns swimmers from each team to events (use method from lineupbuilder)
     def assign_events(self):
         assign_all_teams(self.teams, self.event_names)
         self.check_assignments()
 
+    #
     def check_assignments(self):
         print("\n===== EVENT ASSIGNMENTS =====")
         for team in self.teams.values():
             print(f"\n{team.name}")
             for swimmer in team.swimmers:
                 print(f"{swimmer.name}: {swimmer.assigned_events}")
-
-                if len(swimmer.best_times) >= 3:
-                    if len(swimmer.assigned_events) != 3:
-                        print(
-                            f"WARNING: {swimmer.name} should have 3 events "
-                            f"but has {len(swimmer.assigned_events)}"
-                        )
 
     def build_event_entries(self):
         for event in self.events:
