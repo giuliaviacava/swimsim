@@ -5,10 +5,10 @@ from lineupbuilder import assign_all_teams
 from simulator import simulate_event
 from simulator import SCORING
 
+# Converts from seconds into minutes, seconds, milliseconds
 def format_time(seconds):
     if seconds < 60:
         return f"{seconds:.2f}"
-
     minutes = int(seconds // 60)
     remaining = seconds % 60
     return f"{minutes}:{remaining:05.2f}"
