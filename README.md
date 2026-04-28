@@ -86,3 +86,41 @@ A CSV-formatted file with one row per swimmer. Columns are:
 name, team, 50 Free, 100 Free, 200 Free, 500 Free, 1000 Free, 100 Back, 200 Back, 100 Breast, 200 Breast, 100 Fly, 200 Fly, 200 IM, 400 IM
 Times are stored in decimal seconds (e.g., 49.47 for a 49.47-second 100 Free). Events where a swimmer has no recorded time are marked NA.
 
+
+##How It Works — Step by Step##
+1. User selects two schools
+        ↓
+2. get_teams() parses rosters.txt
+   → Creates Swimmer objects with best times
+   → Groups swimmers into Team objects
+        ↓
+3. assign_all_teams() builds lineups
+   → For each swimmer × each possible event:
+       Compute projected placement vs. full field
+   → Sort events by best projected finish
+   → Assign swimmer to top 3 events they fit
+        ↓
+4. simulate_meet() runs the competition
+   → For each of 13 events:
+       Gather assigned swimmers from both teams
+       Each swimmer gets: best_time × random(0.98, 1.05)
+       Sort by simulated time → assign places
+       Award points: [9, 4, 3, 2, 1] for places 1–5
+        ↓
+5. print_final_results() declares winner
+   → Print running event-by-event results with point tags
+   → Sum team totals → print final scores → name winner
+
+
+
+Scoring System:
+1st:9pts
+2nd:4pts
+3rd:3
+4th:2
+5th:1
+6th+=0
+With 13 events, a maximum of 9 × 13 = 117 points is theoretically possible if one team swept every event. A typical close meet lands somewhere in the 100–150 total point range split between two teams.
+
+#TO RUN:
+just type: python main.py
