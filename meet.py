@@ -41,7 +41,7 @@ class Meet:
             print(f"\n----- {event.name} -----")
             if not event.results:
                 print("No swimmers entered.")
-                return
+                continue
             for place, (swimmer, time) in enumerate(event.results, start=1):
                 formatted_time = self.format_time(time)
                 # Prints name, team, formatted time, and how many points they scored (if they scored)
