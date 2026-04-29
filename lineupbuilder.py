@@ -40,7 +40,7 @@ def assign_events_for_team(team, teams, event_names, event_counts):
             possible_events.append((place, best_time, event_name))
         # Sort events by best placement
         possible_events.sort()
-        # Assign swimmer to 3 events
+        # # Assign swimmer to up to 3 events, max 4 per team per event
         for place, best_time, event_name in possible_events:
             if len(swimmer.assigned_events) >= 3:
                 break
