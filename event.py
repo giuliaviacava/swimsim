@@ -18,3 +18,6 @@ class Event:
     # Return a string showing the event name and number of swimmers entered
     def __str__(self):
         return f"Event({self.name}, entries={len(self.entries)})"
+    #for easier debugging
+    def __repr__(self):
+    return self.__str__()
