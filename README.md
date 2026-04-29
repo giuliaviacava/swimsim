@@ -5,7 +5,7 @@ performance with realistic time variation, and outputs a full meet result with p
 
 ##What is a Dual Meet?##
 A dual meet is a head-to-head swim competition between exactly two teams. Swimmers compete across a set of standard events, and points are 
-awarded based on finishing place. The team with the most total points at the end wins. Each swimmer may enter a maximum of 3 events.
+awarded based on finishing place. The team with the most total points at the end wins. Each swimmer may enter a maximum of 3 events, and up to 4 swimmers per team may enter each individual event.
 
 Project Features
 
@@ -73,8 +73,7 @@ projected_place() counts how many swimmers have a faster best time in that event
 
 ##simulator.py — Race Simulation##
 This is where the randomness lives. For each swimmer in an event:
--Their best time is multiplied by a random factor drawn uniformly from [-2%, +5%], meaning that swimmers always have a chance to go a personal 
-best (-2%) but are more likely to swim slightly slower than their best (+5% upside is larger)
+-Their best time is multiplied by a variation drawn from a truncated normal distribution centered at +1% above their best time with a standard deviation of 1.5%. This makes ordinary swims common, PRs rare but possible, and disaster races very rare. Hard limits of −2% and +6% are enforced
 -Results are sorted fastest to slowest
 -The top 5 finishers receive points per the SCORING list; points are added to the swimmer's team total
 
@@ -98,12 +97,12 @@ Times are stored in decimal seconds (e.g., 49.47 for a 49.47-second 100 Free). E
    → For each swimmer × each possible event:
        Compute projected placement vs. full field
    → Sort events by best projected finish
-   → Assign swimmer to top 3 events they fit
+   → Assign swimmer to top 3 events, enforcing a cap of 4 swimmers per team per event (cap is checked twice: once when building the candidate list, and again at assignment time).
         ↓
 4. simulate_meet() runs the competition
    → For each of 13 events:
        Gather assigned swimmers from both teams
-       Each swimmer gets: best_time × random(0.98, 1.05)
+       Each swimmer gets a simulated time drawn from a truncated normal distribution centered at +1% above their best time (std 1.5%), with a hard floor of −2% and ceiling of +6%. (makes ordinary swims common and extreme outliers rare)
        Sort by simulated time → assign places
        Award points: [9, 4, 3, 2, 1] for places 1–5
         ↓
