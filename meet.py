@@ -3,7 +3,7 @@
 from event import Event
 from lineupbuilder import assign_all_teams
 from simulator import simulate_event
-from simulator import SCORING
+from configuration import SCORING
 
 class Meet:
     # Initializes meet by storing competing teams, list of events, creates Event object for each event
