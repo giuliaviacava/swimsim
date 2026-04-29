@@ -1,6 +1,6 @@
 ### swimsim/lineupbuilder.py
 
-from simulator import SCORING
+from configuration import SCORING
 
 # Estimate where a given swimmer would place in the dual meet for this event using everyone's best times
 def projected_place(swimmer, event_name, teams):
