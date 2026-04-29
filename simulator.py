@@ -1,9 +1,8 @@
 ### swimsim/simulator.py
 
 import random
-
 # Points scoring, random add/drop variations (range from dropping 2% to adding 5%)
-SCORING = [9, 4, 3, 2, 1]
+import SCORING
 MIN_VARIATION = -0.02
 MAX_VARIATION = 0.05
 
