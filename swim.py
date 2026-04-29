@@ -42,3 +42,6 @@ class Swimmer:
     # Return a string showing swimmer name and team name
     def __str__(self):
         return f"Swimmer({self.name}, {self.team})"
+    #for easier debugging
+    def __repr__(self):
+    return self.__str__()
