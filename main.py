@@ -3,7 +3,7 @@
 from swim import Swimmer
 from team import Team
 from meet import Meet
-EVENTS = ["50 Free", "100 Free", "200 Free", "500 Free", "1000 Free", "100 Back", "200 Back", "100 Breast", "200 Breast", "100 Fly", "200 Fly", "200 IM", "400 IM",]
+from configuration import EVENTS
 
 def get_teams(filename):
     teams = {}
