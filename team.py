@@ -18,3 +18,6 @@ class Team:
     # Return a string showing the team name and current score
     def __str__(self):
         return f"Team({self.name}, score={self.score})"
+    #for easier debugging
+    def __repr__(self):
+    return self.__str__()
