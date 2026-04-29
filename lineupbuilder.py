@@ -2,7 +2,7 @@
 
 from configuration import SCORING
 
-MAX_PER_EVENT= 4
+MAX_PER_EVENT= 4  #max 4 swimmers in an event per team
 
 # Estimate where a given swimmer would place in the dual meet for this event using everyone's best times
 def projected_place(swimmer, event_name, teams):
