@@ -3,13 +3,28 @@
 import random
 # Points scoring, random add/drop variations (range from dropping 2% to adding 5%)
 from configuration import SCORING
-MIN_VARIATION = -0.02
-MAX_VARIATION = 0.05
+
+VARIATION_MEAN = 0.010
+VARIATION_STD  = 0.015
+VARIATION_MIN  = -0.020
+VARIATION_MAX  =  0.060
+
+def _truncated_normal(mean, std, low, high): #helper that keeps redrawing from the bell curve until it gets a value inside those hard limits
+    while True:
+        sample = random.gauss(mean, std)
+        if low <= sample <= high:
+            return sample
 
 # Generates swimmer's time by using their best time and adding the random variation
 def generate_swimmer_time(swimmer, event_name):
     best_time = swimmer.best_time_for(event_name)
-    return best_time * (1 + random.uniform(MIN_VARIATION, MAX_VARIATION))
+    variation = _truncated_normal(
+        VARIATION_MEAN,
+        VARIATION_STD,
+        VARIATION_MIN,
+        VARIATION_MAX,
+    )
+    return best_time * (1.0 + variation)
 
 def simulate_event(event, teams):
     results = []
