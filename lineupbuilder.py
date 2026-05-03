@@ -2,7 +2,7 @@
 
 from configuration import SCORING
 
-MAX_PER_EVENT= 4  #max 4 swimmers in an event per team
+MAX_PER_EVENT = 4  # max 4 swimmers in an event per team
 
 # Estimate where a given swimmer would place in the dual meet for this event using everyone's best times
 def projected_place(swimmer, event_name, teams):
@@ -32,7 +32,7 @@ def assign_events_for_team(team, teams, event_names, event_counts):
         for event_name in event_names:
             if not swimmer.can_swim(event_name):
                 continue
-            if event_counts[team.name].get(event_name, 0) >= MAX_PER_EVENT: 
+            if event_counts[team.name].get(event_name, 0) >= MAX_PER_EVENT:
                 continue
                 # Get swimmer's estimated placement in this event, their best time, then store (place, time, event) in list of possible events they could swim
             place = projected_place(swimmer, event_name, teams)
@@ -44,7 +44,7 @@ def assign_events_for_team(team, teams, event_names, event_counts):
         for place, best_time, event_name in possible_events:
             if len(swimmer.assigned_events) >= 3:
                 break
-            if event_counts[team.name].get(event_name, 0) >= MAX_PER_EVENT: 
+            if event_counts[team.name].get(event_name, 0) >= MAX_PER_EVENT:
                 continue
             if swimmer.assign_event(event_name):
                 event_counts[team.name][event_name]=\
