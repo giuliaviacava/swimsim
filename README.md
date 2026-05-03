@@ -1,5 +1,5 @@
 SwimSim — Ivy League Dual Meet Simulator
-SwimSim is a Python-based simulator that models a women's collegiate dual swim meet between any two Ivy League schools. It uses real swimmer roster data (best times from competition), builds optimal event lineups for each team, simulates race-day performance with realistic time variation, and outputs a full meet result with point totals and a winner.
+SwimSim is a Python-based simulator that models a women's collegiate dual swim meet between any two Ivy League schools. It uses real swimmer roster data (best times from competitions), builds optimal event lineups for each team, simulates race-day performance with realistic time variation, and outputs a full meet result with point totals and a winner.
 
 
 TO RUN:
