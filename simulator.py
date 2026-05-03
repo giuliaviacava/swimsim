@@ -1,7 +1,7 @@
 ### swimsim/simulator.py
 
 import random
-# Points scoring, random add/drop variations (range from dropping 2% to adding 5%)
+# Points scoring, random add/drop variations (range from dropping 2% to adding 6% on a normal)
 from configuration import SCORING
 
 VARIATION_MEAN = 0.010
