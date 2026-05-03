@@ -20,4 +20,4 @@ class Event:
         return f"Event({self.name}, entries={len(self.entries)})"
     #for easier debugging
     def __repr__(self):
-    return self.__str__()
+        return self.__str__()
