@@ -29,7 +29,7 @@ class Meet:
             for swimmer in team.swimmers:
                 print(f"{swimmer.name}: {swimmer.assigned_events}")
 
-    # If swimmer is assigned to event then add the swimmer to event, then simulate event (using method from simulator), print event results
+    # If swimmer is assigned to event then add the swimmer to event, then simulate event (using method from simulator), print event results and updated score after each event
     def simulate_meet(self):
         for event in self.events:
             for team in self.teams.values():
@@ -56,6 +56,7 @@ class Meet:
                 print(f"  {team_name}: {team.score}")
 
     # Sorts teams by score from highest to lowest, prints each team and final score, then winner
+    # Scoring bar chart for fun visual
     def print_final_results(self):
         print("\n----- FINAL TEAM SCORES -----")
         ranked_teams = sorted(
